@@ -5,5 +5,23 @@
 // "Red,Green,White,Black"
 // "Red,Green,White,Black"
 // "Red+Green+White+Black"
-// 10 - Write a JavaScript program to compute the sum and product of
-// an array of integers.
+
+
+  function joinArray(array){
+
+        document.write(array.join());
+      
+  }
+
+  let myColor = ["Red", "Green", "White", "Black"];
+  joinArray(myColor)
+
+function concatWithPlus(array){
+
+      for(let i = 0; i < array.length; i++){
+           array += array.concat("+")
+      }
+      document.write(array)
+}
+
+concatWithPlus(myColor)

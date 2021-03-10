@@ -77,3 +77,26 @@ console.log(square(19))
 //  Property method
 
 
+// For Each
+const cars = ["Ford", "Ivixi", "Toyota", "Innoson","Honda", "Peugeot"]
+cars.forEach(function(car){
+      document.write((car))
+      // console.log(car)
+})
+
+// Map
+
+const users = [
+      {id:1, name: 'John'},
+      {id:2, name:'Malik'},
+      {id:3, name:'Jane'},
+      {id:4, name:'Carla'},
+      {id:5, name:'Ifeoma'}
+
+]
+
+const ids = users.map(function(user){
+      return user.map;
+})
+
+console.log(ids)
