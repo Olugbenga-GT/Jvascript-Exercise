@@ -23,7 +23,7 @@ function loadEventListeners(){
                   alert("Please, Add a task")
             }
             const li =  document.createElement('li');
-            li.className = 'collection-item'; // This creates the li
+            li.className = 'collection-item'; // This creates the li and adds class
             li.appendChild(document.createTextNode(taskInput.value)); // Adds the input value to the li
             const link = document.createElement('a');
             link.className = 'delete-item secondary-content';
@@ -35,7 +35,6 @@ function loadEventListeners(){
             // store task in Local Storage
             storeTaskInLocalStorage(taskInput.value);
             taskInput.value = '';
-
       e.preventDefault();
       }
 
@@ -102,9 +101,6 @@ function loadEventListeners(){
             localStorage.setItem('tasks', JSON.stringify(tasks))
       }
 
-
-
-
       function clearTask(e){
             // taskList.innerHTML = ''; (This also works)
              while(taskList.firstChild){
@@ -129,10 +125,7 @@ function loadEventListeners(){
                else { 
                      task.style.display = 'none';
                }
-
          })
-
    }
 
-//    Persisting to Local Storage
 
