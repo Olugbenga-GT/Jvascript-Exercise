@@ -11,7 +11,7 @@
 let  min = 1,
        max = 10,
        winningNumber = 2,
-       gueesesLeft = 3;
+       guessesLeft = 3;
 
   // UI Elements
   const game = document.querySelector('#game');
@@ -31,16 +31,18 @@ let  min = 1,
           setMessage(`Please enter a number between ${min} and ${max}`, "red");  }
      
      if(guess === winningNumber){
-          guessInput.style.borderColor = 'green'; //Tirns border green
-          guessInput.disabled = true; //Disables Input
-          setMessage(`${winningNumber} is correct, YOU WIN!`, 'green')
+          gameOver(true, `${winningNumber} is correct, YOU WIN!`, 'green');  
      }
      else {
-          gueesesLeft -= 1;
-          if(gueesesLeft === 0){
-
+          guessesLeft -= 1;
+          // Wrong Number
+          if(guessesLeft === 0){
+               gameOver(false, ` Game Over, you lost. The correct number was ${winningNumber} `)
           }
-          else{ }
+          else{ 
+               // Game Continues, Altho' wrong answer
+                    setMessage(`${guess} is incorrect. ${guessesLeft} guesses left`, 'red')
+          }
      }
 
 
@@ -49,4 +51,13 @@ let  min = 1,
  function setMessage(msg, color){
      message.textContent = msg;
      message.style.color = color;
+ }
+
+ function gameOver(won, msg){
+      let color;
+      won === true ? color = 'green' : 'red'
+     guessInput.style.borderColor =  color 
+     message.style.color =  color 
+     guessInput.disabled = true; //Disables Input
+     setMessage(msg)
  }
