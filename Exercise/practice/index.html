@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+</head>
+<style>
+      .box{
+            margin: 2em;
+            padding: 5px;
+            border: solid 1px black;
+      }
+
+      .yellowish{
+            background: #efe63f;
+      }
+
+      .bluish{
+            background: blue;;
+      }
+
+      .hide{
+            display:  none;;
+      }
+</style>
+<body>
+      <div class="box">
+            <h1>My Javascript DOM Class</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore, laboriosam?</p>
+      </div>
+
+      <div class="box box-2">
+
+      </div>
+
+      <h1 onclick="this.innerHTML = 'Oooops!'"> Click on this text</h1>
+
+      <section id="event-handling">
+            <p>Click the button to display the date</p>
+            <button  onclick="displayDate()">The time is  ?  </button>
+            <p id="demo"></p>
+      </section>
+      <script src="classes.js"></script>
+</body>
+</html>
