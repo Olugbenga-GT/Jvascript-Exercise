@@ -1,0 +1,30 @@
+[
+      {
+            "id" : 1,
+            "name" : "Karl Max",
+            "company": "BioTech Ltd.",
+            "phone":  "0701 818 3327"
+      },
+
+      {
+            "id" : 2,
+            "name" : "Nikolai Tesla",
+            "company": "Tesla Inc.",
+            "phone":  "0701 665 8027"
+      },
+
+      {
+            "id" : 1,
+            "name" : "Abija WaraBI Ekun",
+            "company": "Aasa Wa Ltd.",
+            "phone":  "0813  310 3624"
+      },
+
+      {
+            "id" : 1,
+            "name" : "Chinweike Amaobi",
+            "company": "Interkince College ",
+            "phone":  "0905 456 2134"
+      }
+]
+
