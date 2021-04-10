@@ -37,8 +37,7 @@ class UI {
             UI.prototype.deleteMovie = function(target){
                   if(target.className == 'delete'){
                         target.parentElement.parentElement.remove();
-                  }
-      }
+                  }  }
       }
 
       clearMovieList(){
@@ -47,6 +46,51 @@ class UI {
             document.getElementById('producer').value = ' ';
       }
 }
+
+
+// DOING LOCAL STORAGE
+
+class Store{
+      static getMovies(){
+            let movies ;
+            if(localStorage.getItem('movies') == null){
+                  movies = [];
+            }
+            else{
+                  movies = JSON.parse(localStorage.getItem('movies'));
+            }
+            return movies;
+      }
+      static displayMovie(){ 
+            const movies = Store.getMovies();
+            movies.forEach(function(movie){
+                  const ui = new UI;
+                  ui.addMovieToList(movie);
+            })
+
+      }
+
+      static addMovie(movie){
+            const movies = Store.getMovies();
+            movies.push(movie)
+            localStorage.setItem('movies', JSON.stringify(movies))
+
+      }
+
+      static removeMovie(producer){
+            const movies = Store.getMovies();
+            movies.forEach(function(movie){
+                 if(movie.producer == producer){
+                       movies.splice(index, 1)
+                 }
+            });
+            localStorage.setItem('movies', JSON.stringify(movies))
+
+      }
+}
+
+// To Show books stored in the Local Storage in the UI.
+document.addEventListener('DOMContentLoaded', Store.displayMovie)
 
 //Event Listeners
 const movieForm = document.getElementById('movie-form');
@@ -69,6 +113,10 @@ function doThis(e){
       else{
        //Adding Movie  to list
       ui.addMovieToList(movie)
+
+      // Adding Movie to Local Storage
+      Store.addMovie(movie)
+     
       ui.showAlert('Movie added successfully', 'success')
       //Clearing the movie list
       ui.clearMovieList( )
@@ -80,6 +128,10 @@ function doThis(e){
 document.getElementById('movie-list').addEventListener('click', function(e){
       const ui = new UI();
       ui.deleteMovie(e.target)
+
+      // Removing (Deleting book from the LS)
+      Store.removeMovie(e.target.parentElement.previousElementSibling.textContent)
+
       ui.showAlert('Book removed successfuly', 'success')
 })
 

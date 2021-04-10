@@ -19,9 +19,16 @@ UI.prototype.addMovieToList = function(movie){
        <td>${movie.title}</td>
        <td>${movie.description}</td>
        <td>${movie.producer}</td>
-       <td><a href= "#" class = "delete">X  </td>
+       <td><a href= "#" class = "delete">X </td>
        `
        list.appendChild(row)
+}
+
+// Clear all movies from movie list
+UI.prototype.clearMovieList = function(){
+      document.getElementById('title').value = ' ';
+      document.getElementById('description').value = ' ';
+      document.getElementById('producer').value = ' ';
 }
 
 // Show error alert
@@ -29,15 +36,14 @@ UI.prototype.showAlert = function(message, className){
       // create a div
       const div = document.createElement('div');
       div.className = `alert ${className}`
-      div.appendChild(document.createTextNode(message));
+      div.appendChild(document.createTextNode(message));  
       const container = document.querySelector('.container');
       const form = document.querySelector('#movie-form');
       container.insertBefore(div, form  );
       setTimeout(function(){
-            document.querySelector('.alert').remove(); }, 1500);
-
+            document.querySelector('.alert').remove(); }, 3000);
 }
-// Delete movie upon clicking X
+//  Delete movie upon clicking X
 UI.prototype.deleteMovie = function(target){
       if(target.className == 'delete'){
             target.parentElement.parentElement.remove();
@@ -51,63 +57,61 @@ UI.prototype.clearMovieList = function(){
        document.getElementById('producer').value = ' ';
 }
 
-class Store{
+// class Store{
        
-      static getMovie(){
-            let movies;
-            if(localStorage.getItem('movies') == null){
-                  movies = []
-            }
-            else{
-                  movies == JSON.parse(localStorage.getItem('movies'));
-            }
-            return movies;
-      }
+//       static getMovie(){
+//             let movies;
+//             if(localStorage.getItem('movies') == null){
+//                   movies = []
+//             }
+//             else{
+//                   movies == JSON.parse(localStorage.getItem('movies'));
+//             }
+//             return movies;
+//       }
 
-      static displayMovie(){
-            const movies = Store.getMovie();
-            movies.forEach(function(movie){
-                  const ui = new UI()
-                 ui.addMovieToList(movie);
-            })
+//       static displayMovie(){
+//             const movies = Store.getMovie();
+//             movies.forEach(function(movie){
+//                   const ui = new UI()
+//                  ui.addMovieToList(movie);
+//             })
 
-      }
+//       }
 
-      static addMovie(movie){
-            const movies  = Store.getMovie();
-            movies.push(movie)
-            localStorage.setItem('movies', JSON.stringify(movies))
-      }
+//       static addMovie (movie){
+//             const movies  = Store.getMovie();
+//             movies.push(movie)
+//             localStorage.setItem('movies', JSON.stringify(movies))
+//       }
 
-      static removeMovie(){
+//       static removeMovie(){
 
-      }
+//       }
+// }
 
-
-}
-
-//Event Listeners
+// //Event Listeners
 movieForm.addEventListener('submit' , doThis)
-
 function doThis(e){
+      // This gets the value of the movie producer, and movie description
       const title =  document.getElementById('title').value;
       const description =  document.getElementById('description').value;
       const producer =  document.getElementById('producer').value;
+      
 
-      const movie = new Movie(title, description, producer) //instantiates Movie
+      const movie = new Movie(title, description, producer) //Instantiates new movie 
       const ui = new UI(); //Instantiates UI
-      console.log(ui)
 
       // Movie Validation
       if(title == ' ' || description == "" ||  producer == ""){
-            // Error Alert
+      // Error Alert
             ui.showAlert("Please, fill in all fields", 'error'); 
       }
       else{
-       //Adding Movie  to list
+        //Adding Movie  to list
       ui.addMovieToList(movie)
       // Storing movie
-      Store.addMovieToList(movie);
+      // Store.addMovieToList(movie);
       ui.showAlert('Movie added successfully', 'success')
       //Clearing the movie list
       ui.clearMovieList( )
@@ -120,4 +124,5 @@ document.getElementById('movie-list').addEventListener('click', function(e){
       const ui = new UI();
       ui.deleteMovie(e.target)
       ui.showAlert('Book removed successfuly', 'success')
+      e.preventDefault();
 })
